@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "lib": ["ESNext"], // Updated from ES6 to ESNext
+      "allowJs": true,
+      "module": "CommonJS",
+      "rootDir": ".",
+      "outDir": "./dist",
+      "esModuleInterop": true,
+      "strict": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "allowSyntheticDefaultImports": true,
+      "typeRoots": ["./src/types", "./node_modules/@types"],
+      "sourceMap": true,
+      "types": ["node", "express", "jest"], 
+      "noImplicitAny": false,
+      "baseUrl": "./src",
+      "paths": {
+        "@/*": ["*"],
+        "@/routes/*": ["./routes/*"]
+      }
+    },
+    "include": ["src/**/*","tests/**/*"],
+    "exclude": ["node_modules", "dist"]
+  }
