@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const createFuelSupplierDTOSchema = z.object({
+    id: z.string(),
     FuelSupplier_id: z.string(),
     title: z.string(),
     description: z.string().optional(),

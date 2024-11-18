@@ -1,11 +1,82 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+enum ActiveStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model Zone {
+  id          String       @id @default(cuid())
+  title       String
+  description String?
+  lat         Float?
+  long        Float?
+  status      ActiveStatus @default(ACTIVE)
+  createdAt   DateTime?
+  updatedAt   DateTime?
+
+  FuelSuppliers FuelSupplier[]
+}
+
+model FuelSupplier {
+  id          String       @id @default(cuid()) // Assuming `id` is a string and follows the `cuid` format
+  zoneId      String
+  title       String
+  description String?
+  lat         Float?
+  long        Float?
+  status      ActiveStatus @default(ACTIVE)
+  createdAt   DateTime?
+  updatedAt   DateTime?
+
+  zone Zone @relation(fields: [zoneId], references: [id])
+
+  // @@index([zoneId])
+}
+
+enum VehicleType {
+  truck
+  van
+}
+
+enum Hybrid {
+  yes
+  no
+}
+
+model Vehicle {
+  id                 String       @id @default(cuid())
+  brand              String
+  vehicle_type       VehicleType
+  model              String
+  photo              String?
+  engine_capacity    Float
+  engine_number      String
+  reg_number         String
+  manufacture_year   DateTime?
+  color              String?
+  reg_date           DateTime?
+  wheel_size         String
+  fuel_type          String
+  tax_token_validity DateTime?
+  reg_validity       DateTime?
+  fitness_validity   DateTime?
+  insurance_validity DateTime?
+  insurance          String?
+  hybrid             Hybrid       @default(no)
+  milage             Float
+  weight             String
+  wheel_base         String
+  status             ActiveStatus @default(ACTIVE)
+  created_by         Int?
+  updated_by         Int?
+  createdAt          DateTime?    @default(now())
+  updatedAt          DateTime?    @updatedAt
 }
