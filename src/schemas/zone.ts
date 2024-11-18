@@ -10,7 +10,7 @@ export const createZoneDTOSchema = z.object({
     updatedAt: z.date().optional(),
 });
 
-export const updateZoneTOSchema = createZoneDTOSchema.omit({}).partial();
+export const updateZoneDTOSchema = createZoneDTOSchema.omit({}).partial();
 
 export const zonesQuerySchema = z.object({
     sort: z.enum(["ASC", "DESC"]).optional(),
@@ -19,5 +19,5 @@ export const zonesQuerySchema = z.object({
 });
 
 export type createZoneInputsTypes = z.infer<typeof createZoneDTOSchema>;
-export type updateZoneInputTypes = z.infer<typeof updateZoneTOSchema>;
+export type updateZoneInputTypes = z.infer<typeof updateZoneDTOSchema>;
 export type zonesQueryInputTypes = z.infer<typeof zonesQuerySchema>;

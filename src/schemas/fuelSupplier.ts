@@ -12,7 +12,7 @@ export const createFuelSupplierDTOSchema = z.object({
     updatedAt: z.date().optional(),
 });
 
-export const updateFuelSupplierTOSchema = createFuelSupplierDTOSchema.omit({}).partial();
+export const updateFuelSupplierDTOSchema = createFuelSupplierDTOSchema.omit({}).partial();
 
 export const fuelSuppliersQuerySchema = z.object({
     sort: z.enum(["ASC", "DESC"]).optional(),
@@ -21,5 +21,5 @@ export const fuelSuppliersQuerySchema = z.object({
 });
 
 export type createFuelSupplierInputsTypes = z.infer<typeof createFuelSupplierDTOSchema>;
-export type updateFuelSupplierInputTypes = z.infer<typeof updateFuelSupplierTOSchema>;
+export type updateFuelSupplierInputTypes = z.infer<typeof updateFuelSupplierDTOSchema>;
 export type fuelSuppliersQueryInputTypes = z.infer<typeof fuelSuppliersQuerySchema>;

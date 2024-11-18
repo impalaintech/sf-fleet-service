@@ -1,9 +1,9 @@
 import prisma from "@/prisma";
 import {
-    createVehicleInputsTypes,
-    updateVehicleInputTypes,
-    vehiclesQueryInputTypes
-} from "@/schemas/vehicle";
+    createFuelSupplierInputsTypes,
+    updateFuelSupplierInputTypes,
+    fuelSuppliersQueryInputTypes
+} from "@/schemas/fuelSupplier";
 import { requiredIdTypes } from "@/schemas/idValidation";
 
 //get single by id
@@ -22,9 +22,9 @@ const getSingleById = async (idObj: requiredIdTypes) => {
 };
 
 //Get multiple
-const getMulti = async (queries: vehiclesQueryInputTypes) => {
+const getMulti = async (queries: fuelSuppliersQueryInputTypes) => {
 
-    const { search, status} = queries
+    const { search, status } = queries
 
     const where: any = {};
 
@@ -63,7 +63,7 @@ const getMulti = async (queries: vehiclesQueryInputTypes) => {
 };
 
 // Create
-const createNew = async (info: createVehicleInputsTypes) => {
+const createNew = async (info: createFuelSupplierInputsTypes) => {
     const data = await prisma.zone.create({
         data: {
             ...info,
@@ -76,7 +76,7 @@ const createNew = async (info: createVehicleInputsTypes) => {
 //Update
 const updateById = async (
     idObj: requiredIdTypes,
-    info: updateVehicleInputTypes
+    info: updateFuelSupplierInputTypes
 ) => {
     //extract id from validated id by zod
     const { id } = idObj;
